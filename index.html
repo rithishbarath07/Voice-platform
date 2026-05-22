@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/dashboard.css" />
   <link rel="stylesheet" href="css/calendar.css" />
+    <link rel="stylesheet" href="css/campaigns.css" />
 </head>
 <body class="dashboard-bg">
   <!-- Sidebar -->
@@ -548,29 +549,372 @@
 
       <!-- CAMPAIGNS PAGE -->
       <section class="page" id="page-campaigns">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">My Campaign</h1>
-            <p class="page-subtitle">Manage and monitor all your voice campaigns.</p>
-          </div>
-          <div class="page-header-actions">
-            <div class="filter-tabs">
-              <button class="filter-tab active" onclick="filterCampaigns('all', this)">All</button>
-              <button class="filter-tab" onclick="filterCampaigns('active', this)">Active</button>
-              <button class="filter-tab" onclick="filterCampaigns('scheduled', this)">Scheduled</button>
-              <button class="filter-tab" onclick="filterCampaigns('completed', this)">Completed</button>
-            </div>
-            <button class="btn-primary" onclick="showNewCampaignModal()">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              New Campaign
-            </button>
-          </div>
-        </div>
+        <div class="campaigns-page">
+          <div class="camp-master-card">
+            <div class="camp-deco camp-deco-dots camp-deco-tl" aria-hidden="true"></div>
+            <div class="camp-deco camp-deco-dots camp-deco-tr" aria-hidden="true"></div>
+            <span class="camp-deco-orb camp-deco-orb-blue" aria-hidden="true"></span>
+            <span class="camp-deco-orb camp-deco-orb-gold" aria-hidden="true"></span>
 
-        <div class="campaign-cards-grid" id="campaignCardsGrid">
-          <!-- Populated by JS -->
+            <header class="campaigns-header">
+              <div class="campaigns-header-content">
+                <h1 class="camp-page-title">My Campaign</h1>
+                <p class="camp-page-subtitle">Manage voice campaigns, HCP outreach journeys, and omnichannel engagement workflows.</p>
+              </div>
+              <div class="campaigns-header-actions">
+                <button type="button" class="btn-secondary camp-btn-outline" onclick="openFilterDrawer()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                  Filters
+                </button>
+                <button type="button" class="btn-secondary camp-btn-outline" onclick="exportCampaigns()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Export
+                </button>
+                <button type="button" class="camp-btn-primary" onclick="showNewCampaignModal()">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Create Campaign
+                </button>
+              </div>
+            </header>
+
+          <div class="campaigns-kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-icon blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/><path d="M12 9v6M15 10v4M9 11v2"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span class="kpi-label">Active Campaigns</span>
+                <div class="kpi-value-group">
+                  <span class="kpi-value" id="kpiActiveCampaigns">3</span>
+                  <span class="kpi-change positive">? 12%</span>
+                </div>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon gold">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span class="kpi-label">Total Contacts</span>
+                <div class="kpi-value-group">
+                  <span class="kpi-value" id="kpiTotalContacts">47.2K</span>
+                  <span class="kpi-change positive">? 8.4%</span>
+                </div>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon green">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span class="kpi-label">Avg Engagement</span>
+                <div class="kpi-value-group">
+                  <span class="kpi-value" id="kpiAvgEngagement">72.4%</span>
+                  <span class="kpi-change positive">? 5.2%</span>
+                </div>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 10"/><line x1="1" y1="1" x2="23" y2="1"/><path d="M10 4h4"/><path d="M10 8h4"/></svg>
+              </div>
+              <div class="kpi-content">
+                <span class="kpi-label">Calls This Month</span>
+                <div class="kpi-value-group">
+                  <span class="kpi-value" id="kpiCallsThisMonth">128.4K</span>
+                  <span class="kpi-change positive">? 23.8%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="camp-spotlight" id="campSpotlight"></div>
+
+          <div class="camp-pulse-strip" id="campPulseStrip">
+            <div class="camp-pulse-item"><span class="camp-pulse-dot live"></span><span id="campPulseLive">3 campaigns live</span></div>
+            <div class="camp-pulse-item"><span class="camp-pulse-icon">???</span><span id="campPulseJourneys">5 journeys configured</span></div>
+            <div class="camp-pulse-item"><span class="camp-pulse-icon">??</span><span id="campPulseEngage">+12% engagement this week</span></div>
+            <div class="camp-pulse-item"><span class="camp-pulse-icon">?</span><span id="campPulseCalls">2.4K calls in last 24h</span></div>
+          </div>
+
+          <div class="camp-channel-strip" id="campChannelStrip"></div>
+
+          <div class="camp-analytics-row">
+            <div class="camp-chart-card">
+              <div class="camp-card-head">
+                <h3>Campaign performance</h3>
+                <span class="camp-live-badge">Live</span>
+              </div>
+              <div class="camp-chart-wrap"><canvas id="campPerfChart"></canvas></div>
+            </div>
+            <div class="camp-chart-card">
+              <div class="camp-card-head">
+                <h3>Channel mix</h3>
+              </div>
+              <div class="camp-chart-wrap donut"><canvas id="campChannelChart"></canvas></div>
+            </div>
+            <div class="camp-ai-panel">
+              <div class="camp-card-head">
+                <h3>AI suggestions</h3>
+              </div>
+              <div class="camp-ai-list" id="campAiList"></div>
+            </div>
+          </div>
+
+          <div class="camp-main-grid">
+            <div class="camp-primary">
+              <div class="campaigns-controls">
+                <div class="search-bar-wrapper">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <input type="text" class="search-bar" id="campaignSearch" placeholder="Search campaigns, HCPs, journeys..." />
+                </div>
+                <div class="filter-tabs">
+                  <button type="button" class="filter-tab active" data-filter="all" onclick="filterCampaigns('all', this)">All</button>
+                  <button type="button" class="filter-tab" data-filter="active" onclick="filterCampaigns('active', this)">Active</button>
+                  <button type="button" class="filter-tab" data-filter="scheduled" onclick="filterCampaigns('scheduled', this)">Scheduled</button>
+                  <button type="button" class="filter-tab" data-filter="paused" onclick="filterCampaigns('paused', this)">Inactive</button>
+                  <button type="button" class="filter-tab" data-filter="completed" onclick="filterCampaigns('completed', this)">Completed</button>
+                </div>
+              </div>
+
+              <div class="campaigns-table-wrapper">
+                <div class="data-table">
+                  <table class="campaign-data-table">
+                    <thead>
+                      <tr>
+                        <th class="col-check"><input type="checkbox" class="select-all" onclick="toggleSelectAll(this)" aria-label="Select all" /></th>
+                        <th class="col-name sortable" onclick="sortCampaigns('name')">Campaign Name</th>
+                        <th class="col-hcp sortable" onclick="sortCampaigns('hcp')">HCP Count</th>
+                        <th class="col-date sortable" onclick="sortCampaigns('date')">Start Date</th>
+                        <th class="col-type">Type</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-progress">Progress</th>
+                        <th class="col-rate">Engagement</th>
+                        <th class="col-actions">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="campaignTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="pagination-section">
+                <div class="pagination-info">
+                  <span>Showing <strong id="paginationStart">1</strong> to <strong id="paginationEnd">10</strong> of <strong id="paginationTotal">8</strong> entries</span>
+                  <label class="pagination-entries-label">Entries per page
+                    <select class="pagination-select" onchange="changePaginationSize(this.value)">
+                      <option value="5">5</option>
+                      <option value="10" selected>10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="pagination-controls">
+                  <button type="button" class="pagination-btn" id="paginationPrev" onclick="previousPage()">Previous</button>
+                  <span class="pagination-numbers" id="paginationNumbers"></span>
+                  <button type="button" class="pagination-btn" id="paginationNext" onclick="nextPage()">Next</button>
+                </div>
+              </div>
+            </div>
+
+            <aside class="camp-aside">
+              <div class="camp-aside-card">
+                <div class="camp-card-head"><h3>Live activity</h3></div>
+                <div class="camp-activity-feed" id="campActivityFeed"></div>
+              </div>
+              <div class="camp-aside-card">
+                <div class="camp-card-head"><h3>Quick actions</h3></div>
+                <div class="camp-quick-actions">
+                  <button type="button" class="camp-quick-btn" onclick="showNewCampaignModal()">+ New Campaign</button>
+                  <button type="button" class="camp-quick-btn" onclick="openJourneyBuilder()">Create Journey</button>
+                  <button type="button" class="camp-quick-btn" onclick="navigateTo('calendar')">Open Calendar</button>
+                  <button type="button" class="camp-quick-btn" onclick="navigateTo('resources')">Resources</button>
+                </div>
+              </div>
+              <div class="camp-aside-card camp-journey-health">
+                <div class="camp-card-head"><h3>Journey health</h3><span class="camp-health-score" id="campHealthScore">?</span></div>
+                <div class="camp-health-bars" id="campHealthBars"></div>
+                <p class="camp-health-tip" id="campHealthTip">Campaigns with journeys convert 2.4? better.</p>
+              </div>
+              <div class="camp-aside-card">
+                <div class="camp-card-head"><h3>Top performing</h3></div>
+                <div class="camp-top-list" id="campTopList"></div>
+              </div>
+            </aside>
+          </div>
+          </div>
         </div>
       </section>
+
+      <!-- Journey Builder Overlay -->
+      <div class="journey-overlay" id="journeyBuilderOverlay">
+        <div class="journey-builder">
+          <header class="journey-header">
+            <div>
+              <button type="button" class="journey-back" onclick="closeJourneyBuilder()">&larr; Back to campaigns</button>
+              <h2 class="journey-title" id="journeyBuilderTitle">Create Journey</h2>
+              <p class="journey-subtitle" id="journeyBuilderSubtitle">Design your omnichannel HCP engagement workflow</p>
+            </div>
+            <div class="journey-header-actions">
+              <button type="button" class="btn-secondary" onclick="saveJourneyDraft()">Save draft</button>
+              <button type="button" class="camp-btn-primary" onclick="submitJourney()">Submit journey</button>
+            </div>
+          </header>
+
+          <div class="journey-body">
+            <div class="journey-flow-panel">
+              <div class="journey-flow-canvas" id="journeyFlowCanvas">
+                <div class="journey-node start-node">
+                  <span class="journey-node-icon">?</span>
+                  <span>Journey start</span>
+                </div>
+                <div class="journey-connector"></div>
+                <div id="journeyStepsContainer"></div>
+                <div class="journey-flow-actions">
+                  <button type="button" class="camp-btn-outline-sm" onclick="addJourneyChannel()">+ Add channel</button>
+                  <button type="button" class="camp-btn-outline-sm gold" onclick="addConditionalChannel()">+ Add conditional channel</button>
+                  <button type="button" class="camp-btn-outline-sm" onclick="addReminderChannel()">+ Add reminder</button>
+                </div>
+              </div>
+            </div>
+
+            <aside class="journey-config-panel" id="journeyConfigPanel">
+              <div class="journey-config-empty" id="journeyConfigEmpty">
+                <p>Select a step in the flow or add a new channel to configure it.</p>
+              </div>
+              <div class="journey-config-form hidden" id="journeyConfigForm">
+                <h3 class="journey-config-title" id="journeyConfigTitle">Channel settings</h3>
+
+                <div class="form-group">
+                  <label class="form-label">Channel type</label>
+                  <div class="journey-channel-grid" id="journeyChannelTypes">
+                    <button type="button" class="journey-channel-card active" data-channel="email" onclick="selectJourneyChannel('email', this)">
+                      <span class="journey-ch-icon">?</span><span>Email</span>
+                    </button>
+                    <button type="button" class="journey-channel-card" data-channel="sms" onclick="selectJourneyChannel('sms', this)">
+                      <span class="journey-ch-icon">??</span><span>SMS</span>
+                    </button>
+                    <button type="button" class="journey-channel-card" data-channel="whatsapp" onclick="selectJourneyChannel('whatsapp', this)">
+                      <span class="journey-ch-icon">??</span><span>WhatsApp</span>
+                    </button>
+                    <button type="button" class="journey-channel-card" data-channel="telecall" onclick="selectJourneyChannel('telecall', this)">
+                      <span class="journey-ch-icon">??</span><span>Telecall</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="journeyTemplate">Template</label>
+                  <select class="form-select" id="journeyTemplate">
+                    <option value="">Select template...</option>
+                    <option>HCP Introduction Email</option>
+                    <option>Sample Request Follow-up</option>
+                    <option>Webinar Reminder SMS</option>
+                    <option>WhatsApp Sample Flow</option>
+                    <option>Telecall Outreach Script</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="journeyDuration">Duration / delay</label>
+                  <select class="form-select" id="journeyDuration">
+                    <option value="0">Immediately</option>
+                    <option value="1">After 1 day</option>
+                    <option value="3">After 3 days</option>
+                    <option value="7">After 7 days</option>
+                    <option value="14">After 14 days</option>
+                  </select>
+                </div>
+
+                <div class="form-group journey-conditional-fields hidden" id="journeyConditionalFields">
+                  <label class="form-label" for="journeyCondition">Conditional logic</label>
+                  <select class="form-select" id="journeyCondition">
+                    <option>If email opened</option>
+                    <option>If email not opened</option>
+                    <option>If link clicked</option>
+                    <option>If no response in 48h</option>
+                    <option>If HCP inactive 30 days</option>
+                  </select>
+                </div>
+
+                <div class="form-group journey-reminder-fields hidden" id="journeyReminderFields">
+                  <label class="form-label" for="journeyReminder">Reminder type</label>
+                  <select class="form-select" id="journeyReminder">
+                    <option>Gentle follow-up</option>
+                    <option>Final reminder</option>
+                    <option>Escalation to rep</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="journeyStepDesc">Description</label>
+                  <textarea class="form-textarea" id="journeyStepDesc" rows="3" placeholder="Optional notes for this step"></textarea>
+                </div>
+
+                <button type="button" class="btn-secondary camp-btn-danger-outline" onclick="removeSelectedJourneyStep()">Remove this step</button>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      <!-- Campaign Journey View (presentation) -->
+      <div class="camp-view-overlay" id="campViewOverlay" onclick="if(event.target===this)closeCampaignView()">
+        <div class="camp-view-modal">
+          <header class="camp-view-header" id="campViewHeader"></header>
+          <div class="camp-view-stats" id="campViewStats"></div>
+          <div class="camp-view-body">
+            <div class="camp-view-timeline-wrap">
+              <h3 class="camp-view-section-title">Omnichannel journey workflow</h3>
+              <div class="camp-view-timeline" id="campViewTimeline"></div>
+            </div>
+            <aside class="camp-view-sidebar">
+              <div class="camp-view-channel-mix" id="campViewChannelMix"></div>
+              <div class="camp-view-meta" id="campViewMeta"></div>
+              <div class="camp-view-actions" id="campViewActions"></div>
+            </aside>
+          </div>
+          <footer class="camp-view-footer">
+            <button type="button" class="btn-secondary" onclick="closeCampaignView()">Close</button>
+            <button type="button" class="camp-btn-primary" id="campViewEditJourney" onclick="">Edit journey</button>
+          </footer>
+        </div>
+      </div>
+
+      <!-- Campaign Filter Drawer -->
+      <div class="camp-drawer-overlay" id="campFilterDrawer" onclick="if(event.target===this)closeFilterDrawer()">
+        <div class="camp-drawer">
+          <div class="camp-drawer-head">
+            <h3>Advanced filters</h3>
+            <button type="button" class="modal-close" onclick="closeFilterDrawer()" aria-label="Close">&times;</button>
+          </div>
+          <div class="camp-drawer-body">
+            <div class="form-group">
+              <label class="form-label">Campaign type</label>
+              <select class="form-select" id="filterType">
+                <option value="">All types</option>
+                <option>Outbound</option>
+                <option>Inbound</option>
+                <option>Voice Blast</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Min HCP count</label>
+              <input type="number" class="form-input" id="filterMinHcp" placeholder="0" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date range</label>
+              <input type="date" class="form-input" id="filterDateFrom" />
+              <input type="date" class="form-input" id="filterDateTo" style="margin-top:8px" />
+            </div>
+          </div>
+          <div class="camp-drawer-foot">
+            <button type="button" class="btn-secondary" onclick="resetFilters()">Reset</button>
+            <button type="button" class="camp-btn-primary" onclick="applyFilters()">Apply filters</button>
+          </div>
+        </div>
+      </div>
 
       <!-- CALENDAR PAGE -->
       <section class="page" id="page-calendar">
@@ -979,5 +1323,6 @@
   <script src="js/dashboard.js"></script>
   <script src="js/dashboard-effects.js"></script>
   <script src="js/calendar.js"></script>
+  <script src="js/campaigns.js"></script>
 </body>
 </html>

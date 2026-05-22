@@ -162,6 +162,9 @@ function navigateTo(page) {
   if (page === 'calendar' && typeof initCalendarModule === 'function') {
     setTimeout(initCalendarModule, 50);
   }
+  if (page === 'campaigns' && typeof initCampaignsModule === 'function') {
+    setTimeout(initCampaignsModule, 50);
+  }
 }
 
 function toggleSidebar() {
@@ -1252,7 +1255,11 @@ function init() {
   }
 
   // Populate all pages
-  populateCampaignCards('all');
+  if (typeof initCampaignsModule === 'function') {
+    initCampaignsModule();
+  } else {
+    populateCampaignCards('all');
+  }
   populateSegments();
   populateContacts();
   populateBarChart();
