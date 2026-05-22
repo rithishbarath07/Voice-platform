@@ -26,14 +26,32 @@ function hcGradient(ctx, c1, c2, vertical = true) {
 
 function hcChartDefaults() {
   Chart.defaults.font.family = "'Inter', sans-serif";
-  Chart.defaults.color = '#8292A6';
+  Chart.defaults.color = '#64748B';
   Chart.defaults.plugins.legend.display = false;
-  Chart.defaults.plugins.tooltip.backgroundColor = '#334155';
+  Chart.defaults.plugins.tooltip.backgroundColor = '#1E293B';
+  Chart.defaults.plugins.tooltip.titleColor = '#F8FAFC';
+  Chart.defaults.plugins.tooltip.bodyColor = '#CBD5E1';
   Chart.defaults.plugins.tooltip.padding = 12;
   Chart.defaults.plugins.tooltip.cornerRadius = 10;
-  Chart.defaults.plugins.tooltip.titleFont = { family: "'Plus Jakarta Sans', sans-serif", weight: '600', size: 13 };
-  Chart.defaults.animation.duration = 800;
-  Chart.defaults.animation.easing = 'easeOutCubic';
+  Chart.defaults.plugins.tooltip.titleFont = { family: "'Sora', sans-serif", weight: '600', size: 13 };
+  Chart.defaults.plugins.tooltip.bodyFont = { family: "'Inter', sans-serif", size: 12 };
+  Chart.defaults.animation.duration = 900;
+  Chart.defaults.animation.easing = 'easeOutQuart';
+}
+
+function hcScaleDefaults() {
+  return {
+    x: {
+      grid: { display: false, drawBorder: false },
+      border: { display: false },
+      ticks: { font: { family: "'Inter', sans-serif", size: 11 }, color: '#94A3B8' },
+    },
+    y: {
+      grid: { color: 'rgba(24, 169, 229, 0.06)', drawBorder: false },
+      border: { display: false },
+      ticks: { font: { family: "'Inter', sans-serif", size: 11 }, color: '#94A3B8' },
+    },
+  };
 }
 
 function destroyHcCharts() {
@@ -172,6 +190,76 @@ function initOverallHcpInsights() {
   });
 }
 
+function initEngagementTrend() {
+  const el = document.getElementById('chartEngagementTrend');
+  if (!el) return;
+  const ctx = el.getContext('2d');
+  const labels = ['May 8', 'May 10', 'May 12', 'May 14', 'May 16', 'May 18', 'May 20'];
+  hcCharts.engTrend = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Engagement',
+        data: [58, 61, 64, 62, 66, 67, 68.4],
+        borderColor: HC_CHART_COLORS.blue,
+        backgroundColor: hcGradient(ctx, 'rgba(24,169,229,0.28)', 'rgba(24,169,229,0)'),
+        fill: true,
+        tension: 0.45,
+        borderWidth: 2.5,
+        pointRadius: 3,
+        pointBackgroundColor: '#fff',
+        pointBorderColor: HC_CHART_COLORS.blue,
+        pointBorderWidth: 2,
+        pointHoverRadius: 6,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: hcScaleDefaults(),
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => `Engagement: ${c.parsed.y}%` } },
+      },
+    },
+  });
+}
+
+function initChannelPerformance() {
+  const el = document.getElementById('chartChannelPerformance');
+  if (!el) return;
+  const ctx = el.getContext('2d');
+  hcCharts.channelPerf = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Telecalls', 'Email', 'SMS', 'WhatsApp'],
+      datasets: [{
+        data: [18420, 12480, 8920, 6420],
+        backgroundColor: ['rgba(24,169,229,0.9)', 'rgba(76,192,255,0.85)', 'rgba(244,197,66,0.9)', 'rgba(16,185,129,0.85)'],
+        borderRadius: 8,
+        borderSkipped: false,
+        barThickness: 28,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: hcScaleDefaults().x,
+        y: {
+          ...hcScaleDefaults().y,
+          ticks: { ...hcScaleDefaults().y.ticks, callback: v => (v / 1000) + 'k' },
+        },
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => `${c.label}: ${c.parsed.y.toLocaleString()}` } },
+      },
+    },
+  });
+}
+
 function initOverallHcpActivity() {
   const el = document.getElementById('chartOverallHcpActivity');
   if (!el) return;
@@ -190,7 +278,7 @@ function initOverallHcpActivity() {
           g.addColorStop(1, HC_CHART_COLORS.blue);
           return g;
         },
-        borderRadius: 8,
+        borderRadius: { topLeft: 8, topRight: 8, bottomLeft: 4, bottomRight: 4 },
         borderSkipped: false,
       }],
     },
@@ -403,16 +491,16 @@ function populateHcTimeline() {
   const el = document.getElementById('hcTimeline');
   if (!el) return;
   const items = [
-    { icon: '📞', bg: 'rgba(24,169,229,0.12)', title: 'Telecall completed with Dr. Sharma', meta: 'Cardiology · Mumbai', time: '2m ago' },
-    { icon: '✉️', bg: 'rgba(76,192,255,0.12)', title: 'Email campaign opened by 142 HCPs', meta: 'Product Launch Q2', time: '18m ago' },
-    { icon: '💬', bg: 'rgba(16,185,129,0.12)', title: 'WhatsApp journey step completed', meta: 'Sample Request Flow', time: '34m ago' },
-    { icon: '📊', bg: 'rgba(244,197,66,0.12)', title: 'Region South crossed 90% engagement', meta: 'Regional milestone', time: '1h ago' },
-    { icon: '🎯', bg: 'rgba(139,92,246,0.12)', title: 'Journey "Onboarding" success rate +4.2%', meta: 'AI-detected uplift', time: '2h ago' },
-    { icon: '📱', bg: 'rgba(24,169,229,0.12)', title: 'SMS blast delivered — 2,840 recipients', meta: 'Webinar Reminder', time: '3h ago' },
+    { label: 'TC', bg: 'rgba(24,169,229,0.12)', color: '#18A9E5', title: 'Telecall completed with Dr. Sharma', meta: 'Cardiology · Mumbai', time: '2m ago' },
+    { label: 'EM', bg: 'rgba(76,192,255,0.12)', color: '#0E8BC4', title: 'Email campaign opened by 142 HCPs', meta: 'Product Launch Q2', time: '18m ago' },
+    { label: 'WA', bg: 'rgba(16,185,129,0.12)', color: '#059669', title: 'WhatsApp journey step completed', meta: 'Sample Request Flow', time: '34m ago' },
+    { label: 'RG', bg: 'rgba(244,197,66,0.15)', color: '#C9920A', title: 'Region South crossed 90% engagement', meta: 'Regional milestone', time: '1h ago' },
+    { label: 'JY', bg: 'rgba(139,92,246,0.12)', color: '#7C3AED', title: 'Journey Onboarding success rate +4.2%', meta: 'AI-detected uplift', time: '2h ago' },
+    { label: 'SM', bg: 'rgba(24,169,229,0.12)', color: '#18A9E5', title: 'SMS blast delivered to 2,840 recipients', meta: 'Webinar Reminder', time: '3h ago' },
   ];
   el.innerHTML = items.map(i => `
     <div class="hc-timeline-item">
-      <div class="hc-timeline-dot" style="background:${i.bg}">${i.icon}</div>
+      <div class="hc-timeline-dot" style="background:${i.bg};color:${i.color}">${i.label}</div>
       <div class="hc-timeline-content">
         <div class="hc-timeline-title">${i.title}</div>
         <div class="hc-timeline-meta">${i.meta}</div>
@@ -473,6 +561,8 @@ function initHealthcareDashboard() {
   if (typeof Chart === 'undefined') return;
   hcChartDefaults();
   destroyHcCharts();
+  initEngagementTrend();
+  initChannelPerformance();
   initOverallHcpInsights();
   initOverallHcpActivity();
   initDoctorsDonut();
@@ -483,6 +573,7 @@ function initHealthcareDashboard() {
   initEngagementHeatmap();
   populateHcCampaignTable();
   populateHcActivity();
+  populateHcTimeline();
   initHcSparklines();
   animateHcCounters();
   setTimeout(animateRegionBars, 400);

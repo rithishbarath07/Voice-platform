@@ -123,6 +123,14 @@ const BAR_DATA = [
 
 let currentPage = 'dashboard';
 
+const PAGE_TITLES = {
+  dashboard: 'Dashboard',
+  campaigns: 'My Campaign',
+  calendar: 'Calendar',
+  resources: 'Resources',
+  settings: 'Settings',
+};
+
 function navigateTo(page) {
   // Update active nav item
   document.querySelectorAll('.nav-item').forEach(item => {
@@ -138,7 +146,7 @@ function navigateTo(page) {
   // Update breadcrumb
   const breadcrumb = document.getElementById('breadcrumbCurrent');
   if (breadcrumb) {
-    breadcrumb.textContent = page.charAt(0).toUpperCase() + page.slice(1);
+    breadcrumb.textContent = PAGE_TITLES[page] || page.charAt(0).toUpperCase() + page.slice(1);
   }
 
   // Close mobile sidebar
@@ -150,6 +158,9 @@ function navigateTo(page) {
 
   if (page === 'dashboard' && typeof initHealthcareDashboard === 'function') {
     setTimeout(initHealthcareDashboard, 80);
+  }
+  if (page === 'calendar' && typeof initCalendarModule === 'function') {
+    setTimeout(initCalendarModule, 50);
   }
 }
 
@@ -171,7 +182,8 @@ function closeSidebar() {
 // NOTIFICATIONS
 // =============================================
 
-function toggleNotifications() {
+function toggleNotifications(e) {
+  if (e) e.stopPropagation();
   const panel = document.getElementById('notificationPanel');
   panel.classList.toggle('show');
   // Close when clicking outside
@@ -184,11 +196,28 @@ function toggleNotifications() {
 
 function closeNotifPanel(e) {
   const panel = document.getElementById('notificationPanel');
-  if (!panel.contains(e.target) && !document.getElementById('notifBtn').contains(e.target)) {
+  const btn = document.getElementById('notifBtn');
+  if (!panel.contains(e.target) && btn && !btn.contains(e.target)) {
     panel.classList.remove('show');
     document.removeEventListener('click', closeNotifPanel);
   }
 }
+
+function markAllNotificationsRead() {
+  document.querySelectorAll('.notif-item.unread').forEach(item => {
+    item.classList.remove('unread');
+    const dot = item.querySelector('.notif-dot');
+    if (dot) dot.classList.add('muted');
+  });
+  const badge = document.querySelector('.notif-badge');
+  if (badge) {
+    badge.textContent = '0';
+    badge.style.display = 'none';
+  }
+  showToast('success', 'Notifications', 'All notifications marked as read.');
+}
+
+window.markAllNotificationsRead = markAllNotificationsRead;
 
 // =============================================
 // COUNTER ANIMATION
@@ -721,7 +750,34 @@ function playRecording(idx) {
 }
 
 // =============================================
-// SCHEDULE PAGE
+// RESOURCES PAGE
+// =============================================
+
+const RESOURCES_DATA = [
+  { name: 'HCP Engagement Playbook', type: 'Guide', desc: 'Best practices for omnichannel HCP outreach and journey design.', icon: '📘', color: '#18A9E5' },
+  { name: 'Email Template Library', type: 'Templates', desc: 'Pre-approved email layouts for product launches and follow-ups.', icon: '✉️', color: '#4CC0FF' },
+  { name: 'Journey Blueprint Pack', type: 'Journeys', desc: 'Ready-to-use onboarding, sample request, and win-back flows.', icon: '🛤️', color: '#8b5cf6' },
+  { name: 'Compliance Checklist', type: 'Compliance', desc: 'Regional guidelines for telecalls, SMS, and WhatsApp outreach.', icon: '✓', color: '#10b981' },
+  { name: 'Campaign Brief Template', type: 'Templates', desc: 'Standard brief format for field and inside sales alignment.', icon: '📋', color: '#F4C542' },
+  { name: 'Analytics Glossary', type: 'Reference', desc: 'Definitions for KPIs, engagement score, and journey metrics.', icon: '📊', color: '#18A9E5' },
+];
+
+function populateResources() {
+  const grid = document.getElementById('resourcesGrid');
+  if (!grid) return;
+  grid.innerHTML = RESOURCES_DATA.map(r => `
+    <div class="resource-card" style="--res-color:${r.color}">
+      <div class="resource-icon">${r.icon}</div>
+      <span class="resource-type">${r.type}</span>
+      <h3 class="resource-name">${r.name}</h3>
+      <p class="resource-desc">${r.desc}</p>
+      <button type="button" class="btn-text resource-open" onclick="showToast('info','Resources','Opening ${r.name.replace(/'/g, '')}…')">Open resource →</button>
+    </div>
+  `).join('');
+}
+
+// =============================================
+// CALENDAR PAGE
 // =============================================
 
 function populateCalendar() {
@@ -1108,7 +1164,7 @@ const TOAST_ICONS = {
 function showToast(type, title, body) {
   const container = document.getElementById('toastContainer');
   const toast = document.createElement('div');
-  toast.className = 'toast';
+  toast.className = `toast toast-${type || 'info'}`;
   toast.innerHTML = `
     <span class="toast-icon">${TOAST_ICONS[type] || 'ℹ️'}</span>
     <div class="toast-msg">
@@ -1206,8 +1262,8 @@ function init() {
   populateMsgThread();
   populateScripts();
   populateRecordings();
-  populateCalendar();
-  populateScheduleEvents();
+  populateResources();
+  if (typeof initCalendarModule === 'function') initCalendarModule();
 
   // Settings default
   const settingsContent = document.getElementById('settingsContent');

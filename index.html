@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="VOICE Healthcare CRM – Premium analytics dashboard for HCP engagement, journeys, and omnichannel campaigns." />
-  <title>VOICE – Healthcare CRM Analytics Dashboard</title>
+  <meta name="description" content="VOICE Healthcare CRM ? Premium analytics dashboard for HCP engagement, journeys, and omnichannel campaigns." />
+  <title>VOICE ? Healthcare CRM Analytics Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/calendar.css" />
 </head>
 <body class="dashboard-bg">
   <!-- Sidebar -->
@@ -51,57 +52,24 @@
           </span>
           <span class="nav-label">Dashboard</span>
         </li>
-        <li class="nav-item" data-page="contacts" onclick="navigateTo('contacts')">
-          <span class="nav-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          </span>
-          <span class="nav-label">HCP Directory</span>
-        </li>
         <li class="nav-item" data-page="campaigns" onclick="navigateTo('campaigns')">
           <span class="nav-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           </span>
-          <span class="nav-label">Campaigns</span>
+          <span class="nav-label">My Campaign</span>
         </li>
-        <li class="nav-item" data-page="analytics" onclick="navigateTo('analytics')">
-          <span class="nav-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          </span>
-          <span class="nav-label">Reports</span>
-        </li>
-        <li class="nav-item" data-page="messages" onclick="navigateTo('messages')">
-          <span class="nav-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          </span>
-          <span class="nav-label">Messages</span>
-          <span class="nav-dot"></span>
-        </li>
-      </ul>
-
-      <div class="nav-section-label" style="margin-top: 24px;">Tools</div>
-      <ul class="nav-list">
-        <li class="nav-item" data-page="scripts" onclick="navigateTo('scripts')">
-          <span class="nav-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          </span>
-          <span class="nav-label">Scripts</span>
-        </li>
-        <li class="nav-item" data-page="recordings" onclick="navigateTo('recordings')">
-          <span class="nav-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-          </span>
-          <span class="nav-label">Recordings</span>
-        </li>
-        <li class="nav-item" data-page="schedule" onclick="navigateTo('schedule')">
+        <li class="nav-item" data-page="calendar" onclick="navigateTo('calendar')">
           <span class="nav-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           </span>
-          <span class="nav-label">Schedule</span>
+          <span class="nav-label">Calendar</span>
         </li>
-      </ul>
-
-      <div class="nav-section-label" style="margin-top: 24px;">Account</div>
-      <ul class="nav-list">
+        <li class="nav-item" data-page="resources" onclick="navigateTo('resources')">
+          <span class="nav-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </span>
+          <span class="nav-label">Resources</span>
+        </li>
         <li class="nav-item" data-page="settings" onclick="navigateTo('settings')">
           <span class="nav-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M12 2v2m0 16v2M2 12h2m16 0h2M19.07 19.07l-1.41-1.41M5.34 18.66l1.41-1.41"/></svg>
@@ -146,7 +114,7 @@
         <div class="search-bar">
           <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" class="search-input" id="searchInput" placeholder="Search HCPs, campaigns, regions, journeys..." autocomplete="off" />
-          <span class="search-kbd">⌘K</span>
+          <span class="search-kbd">?K</span>
         </div>
       </div>
       <div class="topbar-right">
@@ -154,61 +122,17 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
           <span class="notif-badge">3</span>
         </button>
-        <button class="topbar-btn" id="helpBtn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        </button>
         <div class="topbar-divider"></div>
         <div class="topbar-profile" onclick="navigateTo('settings')">
           <div class="topbar-profile-avatar">RB</div>
-          <span class="topbar-profile-name">Rithish</span>
+          <div class="topbar-profile-info">
+            <span class="topbar-profile-name">Rithish Barath</span>
+            <span class="topbar-profile-role">Admin</span>
+          </div>
+          <svg class="topbar-profile-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
-        <button class="btn-primary" id="newCampaignBtn" onclick="showNewCampaignModal()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          New Campaign
-        </button>
       </div>
     </header>
-
-    <!-- Notification Dropdown -->
-    <div class="notification-panel" id="notificationPanel">
-      <div class="notif-header">
-        <span class="notif-title">Notifications</span>
-        <button class="notif-mark-all">Mark all read</button>
-      </div>
-      <div class="notif-list">
-        <div class="notif-item unread">
-          <div class="notif-dot"></div>
-          <div class="notif-content">
-            <p class="notif-text">Campaign <strong>Spring Outreach</strong> completed successfully</p>
-            <span class="notif-time">2 min ago</span>
-          </div>
-        </div>
-        <div class="notif-item unread">
-          <div class="notif-dot"></div>
-          <div class="notif-content">
-            <p class="notif-text">New contact list imported — <strong>847 contacts</strong></p>
-            <span class="notif-time">15 min ago</span>
-          </div>
-        </div>
-        <div class="notif-item unread">
-          <div class="notif-dot"></div>
-          <div class="notif-content">
-            <p class="notif-text">Your <strong>Trial Plan</strong> ends in 3 days</p>
-            <span class="notif-time">1 hour ago</span>
-          </div>
-        </div>
-        <div class="notif-item">
-          <div class="notif-dot" style="opacity:0"></div>
-          <div class="notif-content">
-            <p class="notif-text">Monthly report for <strong>April</strong> is ready</p>
-            <span class="notif-time">Yesterday</span>
-          </div>
-        </div>
-      </div>
-      <div class="notif-footer">
-        <button class="notif-view-all">View all notifications</button>
-      </div>
-    </div>
 
     <!-- Pages -->
     <div class="page-container">
@@ -216,6 +140,34 @@
       <!-- HEALTHCARE CRM DASHBOARD -->
       <section class="page active" id="page-dashboard">
         <div class="hc-dashboard">
+
+          <div class="hc-welcome-band">
+            <div class="hc-welcome-deco">
+              <div class="hc-deco-ring"></div>
+              <div class="hc-deco-ring hc-deco-ring-2"></div>
+              <div class="hc-orb hc-orb-blue"></div>
+              <div class="hc-orb hc-orb-gold"></div>
+            </div>
+            <div class="hc-welcome-main">
+              <span class="hc-welcome-badge">Healthcare CRM</span>
+              <h2 class="hc-welcome-title">Welcome back, <span class="hc-name-highlight">Rithish</span></h2>
+              <p class="hc-welcome-desc">Your omnichannel HCP engagement command center ? campaigns, journeys, and insights in one view.</p>
+            </div>
+            <div class="hc-welcome-metrics">
+              <div class="hc-welcome-metric">
+                <span class="hc-welcome-metric-val">68%</span>
+                <span class="hc-welcome-metric-lbl">Engagement</span>
+              </div>
+              <div class="hc-welcome-metric accent-gold">
+                <span class="hc-welcome-metric-val">24</span>
+                <span class="hc-welcome-metric-lbl">Active journeys</span>
+              </div>
+              <div class="hc-welcome-metric">
+                <span class="hc-welcome-metric-val">8</span>
+                <span class="hc-welcome-metric-lbl">Live campaigns</span>
+              </div>
+            </div>
+          </div>
 
           <div class="hc-page-header">
             <div>
@@ -403,6 +355,27 @@
             <div class="hc-glass-card fill-card hc-chart-card">
               <div class="hc-card-header">
                 <div>
+                  <h3 class="hc-card-title">Engagement Trend</h3>
+                  <p class="hc-card-subtitle">Daily engagement rate, last 14 days</p>
+                </div>
+              </div>
+              <div class="hc-card-body"><div class="hc-chart-wrap tall grow"><canvas id="chartEngagementTrend"></canvas></div></div>
+            </div>
+            <div class="hc-glass-card fill-card hc-chart-card">
+              <div class="hc-card-header">
+                <div>
+                  <h3 class="hc-card-title">Channel Performance</h3>
+                  <p class="hc-card-subtitle">Touchpoint volume by channel</p>
+                </div>
+              </div>
+              <div class="hc-card-body"><div class="hc-chart-wrap tall grow"><canvas id="chartChannelPerformance"></canvas></div></div>
+            </div>
+          </div>
+
+          <div class="hc-equal-row cols-2">
+            <div class="hc-glass-card fill-card hc-chart-card">
+              <div class="hc-card-header">
+                <div>
                   <h3 class="hc-card-title">Overall HCP Insights</h3>
                   <p class="hc-card-subtitle">Enrollment vs active HCP, last 12 months</p>
                 </div>
@@ -542,6 +515,14 @@
             </div>
           </div>
 
+          <div class="hc-glass-card fill-card hc-timeline-card">
+            <div class="hc-card-header">
+              <h3 class="hc-card-title">Activity timeline</h3>
+              <p class="hc-card-subtitle">Recent omnichannel touchpoints across your network</p>
+            </div>
+            <div class="hc-timeline" id="hcTimeline"></div>
+          </div>
+
           <div class="hc-equal-row cols-bottom hc-split-bottom">
             <div class="hc-glass-card fill-card hc-campaign-footer">
               <div class="hc-card-header">
@@ -569,7 +550,7 @@
       <section class="page" id="page-campaigns">
         <div class="page-header">
           <div>
-            <h1 class="page-title">Campaigns</h1>
+            <h1 class="page-title">My Campaign</h1>
             <p class="page-subtitle">Manage and monitor all your voice campaigns.</p>
           </div>
           <div class="page-header-actions">
@@ -591,289 +572,118 @@
         </div>
       </section>
 
-      <!-- CONTACTS PAGE -->
-      <section class="page" id="page-contacts">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">Contacts</h1>
-            <p class="page-subtitle">Manage your contact lists and audience segments.</p>
+      <!-- CALENDAR PAGE -->
+      <section class="page" id="page-calendar">
+        <div class="cal-page">
+          <div class="cal-page-header">
+            <div>
+              <h1 class="page-title">Calendar</h1>
+              <p class="page-subtitle">Schedule campaigns, journeys, telecalls, and meetings.</p>
+            </div>
           </div>
-          <div class="page-header-actions">
-            <button class="btn-secondary" id="importContactsBtn">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-              Import CSV
-            </button>
-            <button class="btn-primary" id="addContactBtn">
+          <div class="cal-stats-strip">
+            <div class="cal-stat-card">
+              <div class="cal-stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div>
+                <div class="cal-stat-val" id="calStatToday">0</div>
+                <div class="cal-stat-lbl">Events today</div>
+              </div>
+            </div>
+            <div class="cal-stat-card">
+              <div class="cal-stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div>
+                <div class="cal-stat-val" id="calStatWeek">0</div>
+                <div class="cal-stat-lbl">This week</div>
+              </div>
+            </div>
+            <div class="cal-stat-card">
+              <div class="cal-stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
+              </div>
+              <div>
+                <div class="cal-stat-val" id="calStatMonth">0</div>
+                <div class="cal-stat-lbl">This month</div>
+              </div>
+            </div>
+            <div class="cal-stat-card gold">
+              <div class="cal-stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="cal-stat-val" id="calStatCampaigns">0</div>
+                <div class="cal-stat-lbl">Campaigns scheduled</div>
+              </div>
+            </div>
+          </div>
+          <div class="cal-toolbar">
+            <div class="cal-toolbar-left">
+              <div class="cal-view-tabs">
+                <button type="button" class="cal-view-tab active" data-view="month">Month</button>
+                <button type="button" class="cal-view-tab" data-view="agenda">Agenda</button>
+              </div>
+              <div class="cal-month-nav">
+                <button type="button" class="cal-nav-btn" id="calPrevMonth" aria-label="Previous month">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <h2 class="cal-month-title" id="calMonthTitle">May 2025</h2>
+                <button type="button" class="cal-nav-btn" id="calNextMonth" aria-label="Next month">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+                <button type="button" class="cal-today-btn" id="calTodayBtn">Today</button>
+              </div>
+            </div>
+            <div class="cal-filter-chips">
+              <button type="button" class="cal-filter-chip active" data-filter="all">All</button>
+              <button type="button" class="cal-filter-chip" data-filter="campaign">Campaigns</button>
+              <button type="button" class="cal-filter-chip" data-filter="journey">Journeys</button>
+              <button type="button" class="cal-filter-chip" data-filter="telecall">Calls</button>
+              <button type="button" class="cal-filter-chip" data-filter="meeting">Meetings</button>
+            </div>
+            <button type="button" class="btn-primary" id="calAddEventBtn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              Add Contact
+              Add Event
             </button>
           </div>
-        </div>
-
-        <div class="contacts-layout">
-          <!-- Segments Panel -->
-          <div class="segments-panel">
-            <h3 class="segment-title">Lists & Segments</h3>
-            <div class="segment-list" id="segmentList">
-              <!-- Populated by JS -->
+          <div class="cal-main-layout">
+            <div class="cal-calendar-panel">
+              <div id="mainCalendar" class="main-calendar"></div>
+              <div id="calAgendaView" class="cal-agenda-view"></div>
             </div>
-            <button class="btn-text" style="margin-top:12px;font-size:13px;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              New Segment
-            </button>
-          </div>
-
-          <!-- Contacts Table -->
-          <div class="contacts-table-wrapper">
-            <div class="contacts-search-bar">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" id="contactSearchInput" placeholder="Search contacts..." class="contacts-search-input" />
-            </div>
-            <table class="contacts-table">
-              <thead>
-                <tr>
-                  <th><input type="checkbox" class="table-checkbox" id="selectAllContacts" /></th>
-                  <th>Name</th>
-                  <th>Phone</th>
-                  <th>Status</th>
-                  <th>Last Contact</th>
-                  <th>Tags</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="contactsTableBody">
-                <!-- Populated by JS -->
-              </tbody>
-            </table>
-            <div class="table-pagination">
-              <span class="pagination-info">Showing 1–10 of 5,284 contacts</span>
-              <div class="pagination-btns">
-                <button class="pag-btn" disabled>←</button>
-                <button class="pag-btn active">1</button>
-                <button class="pag-btn">2</button>
-                <button class="pag-btn">3</button>
-                <span>...</span>
-                <button class="pag-btn">529</button>
-                <button class="pag-btn">→</button>
+            <aside class="cal-sidebar">
+              <div class="cal-sidebar-card">
+                <div class="cal-sidebar-head">
+                  <div>
+                    <span class="cal-sidebar-title">Selected day</span>
+                    <div class="cal-sidebar-date" id="calSidebarDate"></div>
+                  </div>
+                  <button type="button" class="cal-quick-add" id="calSidebarAdd" title="Add event">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  </button>
+                </div>
+                <div class="cal-events-list" id="calEventsList"></div>
               </div>
-            </div>
+              <div class="cal-sidebar-card">
+                <span class="cal-sidebar-title">Upcoming</span>
+                <div class="cal-events-list compact" id="calUpcomingList"></div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      <!-- ANALYTICS PAGE -->
-      <section class="page" id="page-analytics">
+      <!-- RESOURCES PAGE -->
+      <section class="page" id="page-resources">
         <div class="page-header">
           <div>
-            <h1 class="page-title">Analytics</h1>
-            <p class="page-subtitle">Deep insights into your voice campaign performance.</p>
-          </div>
-          <div class="page-header-actions">
-            <div class="date-filter">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
-              Last 30 days
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <button class="btn-secondary" id="downloadReportBtn">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download Report
-            </button>
+            <h1 class="page-title">Resources</h1>
+            <p class="page-subtitle">Playbooks, templates, journey blueprints, and compliance guides for your team.</p>
           </div>
         </div>
-
-        <div class="analytics-kpi-row">
-          <div class="analytics-kpi">
-            <span class="analytics-kpi-label">Avg. Answer Rate</span>
-            <span class="analytics-kpi-value" style="color:#18A9E5">68.4%</span>
-            <span class="analytics-kpi-change up">↑ 4.2%</span>
-          </div>
-          <div class="analytics-kpi">
-            <span class="analytics-kpi-label">Drop Rate</span>
-            <span class="analytics-kpi-value" style="color:#f87171">12.1%</span>
-            <span class="analytics-kpi-change down">↓ 1.3%</span>
-          </div>
-          <div class="analytics-kpi">
-            <span class="analytics-kpi-label">Voicemail Left</span>
-            <span class="analytics-kpi-value" style="color:#F4C542">19.5%</span>
-            <span class="analytics-kpi-change up">↑ 2.1%</span>
-          </div>
-          <div class="analytics-kpi">
-            <span class="analytics-kpi-label">DNC Requests</span>
-            <span class="analytics-kpi-value" style="color:#8b5cf6">0.8%</span>
-            <span class="analytics-kpi-change down">↓ 0.2%</span>
-          </div>
-          <div class="analytics-kpi">
-            <span class="analytics-kpi-label">Cost per Connect</span>
-            <span class="analytics-kpi-value" style="color:#10b981">₹2.14</span>
-            <span class="analytics-kpi-change up">↓ 0.18</span>
-          </div>
-        </div>
-
-        <div class="charts-row" style="margin-top:24px;">
-          <div class="chart-card large">
-            <div class="chart-card-header">
-              <div>
-                <h3 class="chart-title">Performance Trend</h3>
-                <p class="chart-subtitle">Answer rate vs. total calls over time</p>
-              </div>
-            </div>
-            <div class="bar-chart-wrapper" id="performanceChart">
-              <div class="bar-chart-bars">
-                <!-- Populated by JS -->
-              </div>
-              <div class="bar-chart-labels">
-                <!-- Populated by JS -->
-              </div>
-            </div>
-          </div>
-          <div class="chart-card small">
-            <div class="chart-card-header">
-              <div>
-                <h3 class="chart-title">Call Outcomes</h3>
-                <p class="chart-subtitle">Distribution breakdown</p>
-              </div>
-            </div>
-            <div class="outcomes-list">
-              <div class="outcome-item">
-                <div class="outcome-info">
-                  <span class="outcome-dot" style="background:#18A9E5"></span>
-                  <span class="outcome-name">Answered</span>
-                </div>
-                <div class="outcome-bar-wrap">
-                  <div class="outcome-bar" style="width:68%;background:#18A9E5;"></div>
-                </div>
-                <span class="outcome-pct">68%</span>
-              </div>
-              <div class="outcome-item">
-                <div class="outcome-info">
-                  <span class="outcome-dot" style="background:#F4C542"></span>
-                  <span class="outcome-name">Voicemail</span>
-                </div>
-                <div class="outcome-bar-wrap">
-                  <div class="outcome-bar" style="width:19.5%;background:#F4C542;"></div>
-                </div>
-                <span class="outcome-pct">19.5%</span>
-              </div>
-              <div class="outcome-item">
-                <div class="outcome-info">
-                  <span class="outcome-dot" style="background:#f87171"></span>
-                  <span class="outcome-name">No Answer</span>
-                </div>
-                <div class="outcome-bar-wrap">
-                  <div class="outcome-bar" style="width:12.1%;background:#f87171;"></div>
-                </div>
-                <span class="outcome-pct">12.1%</span>
-              </div>
-              <div class="outcome-item">
-                <div class="outcome-info">
-                  <span class="outcome-dot" style="background:#8b5cf6"></span>
-                  <span class="outcome-name">DNC Request</span>
-                </div>
-                <div class="outcome-bar-wrap">
-                  <div class="outcome-bar" style="width:0.8%;background:#8b5cf6;"></div>
-                </div>
-                <span class="outcome-pct">0.8%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="analytics-bottom-grid">
-          <div class="chart-card" style="flex:1;">
-            <div class="chart-card-header"><div><h3 class="chart-title">Top Performing Campaigns</h3></div></div>
-            <div class="top-campaigns-list" id="topCampaignsList"></div>
-          </div>
-          <div class="chart-card" style="flex:1;">
-            <div class="chart-card-header"><div><h3 class="chart-title">Call Heatmap</h3><p class="chart-subtitle">Best times to call (by hour)</p></div></div>
-            <div class="heatmap-wrapper" id="callHeatmap"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- MESSAGES PAGE -->
-      <section class="page" id="page-messages">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">Messages</h1>
-            <p class="page-subtitle">SMS, voicemail drops, and follow-up messages.</p>
-          </div>
-        </div>
-        <div class="messages-layout">
-          <div class="messages-sidebar-panel">
-            <div class="msg-search">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input type="text" placeholder="Search messages..." class="msg-search-input" />
-            </div>
-            <div class="msg-list" id="msgList"></div>
-          </div>
-          <div class="message-viewer">
-            <div class="msg-viewer-header">
-              <div class="msg-contact-info">
-                <div class="msg-avatar" style="background: linear-gradient(135deg,#18A9E5,#1270a0)">AK</div>
-                <div>
-                  <p class="msg-contact-name">Arjun Kumar</p>
-                  <p class="msg-contact-phone">+91 98765 43210</p>
-                </div>
-              </div>
-              <div class="msg-viewer-actions">
-                <button class="btn-secondary" style="font-size:13px;padding:7px 14px;">Call Back</button>
-                <button class="btn-primary" style="font-size:13px;padding:7px 14px;">Send SMS</button>
-              </div>
-            </div>
-            <div class="msg-thread" id="msgThread"></div>
-            <div class="msg-compose">
-              <textarea class="msg-textarea" id="msgTextarea" placeholder="Type a message..." rows="2"></textarea>
-              <div class="msg-compose-actions">
-                <span class="msg-char-count" id="msgCharCount">0/160</span>
-                <button class="btn-primary" style="font-size:13px;padding:8px 18px;" onclick="sendMessage()">Send</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SCRIPTS PAGE -->
-      <section class="page" id="page-scripts">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">Call Scripts</h1>
-            <p class="page-subtitle">Create and manage your call scripts and templates.</p>
-          </div>
-          <button class="btn-primary" onclick="showScriptModal()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            New Script
-          </button>
-        </div>
-        <div class="scripts-grid" id="scriptsGrid"></div>
-      </section>
-
-      <!-- RECORDINGS PAGE -->
-      <section class="page" id="page-recordings">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">Recordings</h1>
-            <p class="page-subtitle">Browse and replay all your voice recordings.</p>
-          </div>
-        </div>
-        <div class="recordings-list" id="recordingsList"></div>
-      </section>
-
-      <!-- SCHEDULE PAGE -->
-      <section class="page" id="page-schedule">
-        <div class="page-header">
-          <div>
-            <h1 class="page-title">Schedule</h1>
-            <p class="page-subtitle">Plan and schedule your upcoming voice campaigns.</p>
-          </div>
-          <button class="btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Schedule Campaign
-          </button>
-        </div>
-        <div class="schedule-layout">
-          <div class="mini-calendar" id="miniCalendar"></div>
-          <div class="schedule-events" id="scheduleEvents"></div>
-        </div>
+        <div class="resources-grid" id="resourcesGrid"></div>
       </section>
 
       <!-- SETTINGS PAGE -->
@@ -898,6 +708,71 @@
 
     </div>
   </main>
+
+  <!-- Calendar Event Modal -->
+  <div class="modal-overlay cal-modal" id="calEventModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="calModalTitle">Add Event</h2>
+          <p class="modal-subtitle" id="calModalSubtitle">Schedule any campaign, journey, or activity</p>
+        </div>
+        <button type="button" class="modal-close" id="calEventModalClose" aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="calEventTitle">Event title</label>
+          <input type="text" class="form-input" id="calEventTitle" placeholder="e.g. Spring Outreach review" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="calEventDate">Date</label>
+          <input type="date" class="form-input" id="calEventDate" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="calEventStart">Start time</label>
+            <input type="time" class="form-input" id="calEventStart" value="09:00" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="calEventEnd">End time</label>
+            <input type="time" class="form-input" id="calEventEnd" value="10:00" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Event type</label>
+          <div class="cal-type-grid">
+            <button type="button" class="cal-type-option selected" data-type="campaign">Campaign</button>
+            <button type="button" class="cal-type-option" data-type="journey">Journey</button>
+            <button type="button" class="cal-type-option" data-type="telecall">Telecall</button>
+            <button type="button" class="cal-type-option" data-type="meeting">Meeting</button>
+            <button type="button" class="cal-type-option" data-type="email">Email</button>
+            <button type="button" class="cal-type-option" data-type="other">Other</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Color</label>
+          <div class="cal-color-row">
+            <button type="button" class="cal-color-swatch selected" data-color="#18A9E5" style="background:#18A9E5" aria-label="Blue"></button>
+            <button type="button" class="cal-color-swatch" data-color="#8b5cf6" style="background:#8b5cf6" aria-label="Purple"></button>
+            <button type="button" class="cal-color-swatch" data-color="#10b981" style="background:#10b981" aria-label="Green"></button>
+            <button type="button" class="cal-color-swatch" data-color="#F4C542" style="background:#F4C542" aria-label="Gold"></button>
+            <button type="button" class="cal-color-swatch" data-color="#4CC0FF" style="background:#4CC0FF" aria-label="Light blue"></button>
+            <button type="button" class="cal-color-swatch" data-color="#64748B" style="background:#64748B" aria-label="Gray"></button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="calEventDesc">Description</label>
+          <textarea class="form-textarea" id="calEventDesc" rows="3" placeholder="Optional notes?"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="calEventCancelBtn">Cancel</button>
+        <button type="button" class="btn-primary" id="calEventSaveBtn">Save event</button>
+      </div>
+    </div>
+  </div>
 
   <!-- New Campaign Modal -->
   <div class="modal-overlay" id="newCampaignModal">
@@ -983,7 +858,7 @@
             <small>or</small>
             <button class="btn-secondary" style="font-size:13px;margin-top:8px;">Browse File</button>
           </div>
-          <p class="or-text">— or select from existing lists —</p>
+          <p class="or-text">? or select from existing lists ?</p>
           <div class="existing-lists" id="existingLists"></div>
         </div>
         <!-- Step 3 -->
@@ -1048,7 +923,7 @@
           </div>
           <div class="launch-summary">
             <div class="launch-sum-row">
-              <span>Campaign</span><strong id="summaryName">—</strong>
+              <span>Campaign</span><strong id="summaryName">?</strong>
             </div>
             <div class="launch-sum-row">
               <span>Type</span><strong id="summaryType">Outbound</strong>
@@ -1063,12 +938,53 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-secondary" id="modalBackBtn" onclick="modalBack()" style="display:none;">← Back</button>
+        <button class="btn-secondary" id="modalBackBtn" onclick="modalBack()" style="display:none;">? Back</button>
         <div style="display:flex;gap:12px;margin-left:auto;">
           <button class="btn-secondary" onclick="hideNewCampaignModal()">Cancel</button>
-          <button class="btn-primary" id="modalNextBtn" onclick="modalNext()">Continue →</button>
+          <button class="btn-primary" id="modalNextBtn" onclick="modalNext()">Continue ?</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Notification Panel -->
+  <div class="notification-panel" id="notificationPanel">
+    <div class="notif-header">
+      <span class="notif-title">Notifications</span>
+      <button type="button" class="notif-mark-all" onclick="markAllNotificationsRead()">Mark all read</button>
+    </div>
+    <div class="notif-list">
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div class="notif-content">
+          <p class="notif-text">Campaign <strong>Spring Outreach</strong> completed successfully</p>
+          <span class="notif-time">2 min ago</span>
+        </div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div class="notif-content">
+          <p class="notif-text">New contact list imported ? <strong>847 contacts</strong></p>
+          <span class="notif-time">15 min ago</span>
+        </div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div class="notif-content">
+          <p class="notif-text">Your <strong>Trial Plan</strong> ends in 3 days</p>
+          <span class="notif-time">1 hour ago</span>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-dot muted"></div>
+        <div class="notif-content">
+          <p class="notif-text">Monthly report for <strong>April</strong> is ready</p>
+          <span class="notif-time">Yesterday</span>
+        </div>
+      </div>
+    </div>
+    <div class="notif-footer">
+      <button type="button" class="notif-view-all">View all notifications</button>
     </div>
   </div>
 
@@ -1076,8 +992,9 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/app.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/dashboard-effects.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/calendar.js"></script>
 </body>
 </html>
