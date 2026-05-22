@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOICE – Secure Login Portal</title>
+  <!-- SEO tags -->
+  <meta name="description" content="Secure enterprise login portal for the VOICE platform.">
+  
+  <link rel="stylesheet" href="css/styles.css">
+   <style>
+    /* ============================================================
+       VOICE – Pixel-Perfect Futuristic Minimalist Login Page
+       Matches the shared mock design with exact layouts & waves
+       ============================================================ */
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --primary: #18A9E5;
+      --primary-dark: #0284c7;
+      --accent: #F4C542;
+      --text-main: #0B1E33; /* Dark navy */
+      --text-muted: #8292A6;
+      --border: #E2E8F0;
+      --white: #FFFFFF;
+      --font-heading: 'Sora', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      width: 100%;
+      font-family: var(--font-body);
+      background: var(--white);
+      overflow: hidden;
+      display: flex;
+    }
+
+    .login-container {
+      display: grid;
+      grid-template-columns: 60% 40%; /* left side slightly larger for stronger branding */
+      width: 100%;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* ── LEFT SECTION (Futuristic Minimalist Branding) ───────────── */
+    .left-section {
+      background: linear-gradient(185deg, #FFFFFF 30%, #F3F7FD 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Dotted Corner Matrices */
+    .dotted-grid {
+      position: absolute;
+      width: 100px;
+      height: 68px;
+      opacity: 0.55;
+    }
+
+    .dotted-top-left {
+      top: 48px;
+      left: 48px;
+    }
+
+    .dotted-top-right {
+      top: 48px;
+      right: 48px;
+    }
+
+    /* Elegant flowing background paths */
+    .bg-paths {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Concentric outline rings around the central logo */
+    .concentric-rings {
+      position: absolute;
+      top: 50%;
+      left: 25%; /* perfectly centered in the left column */
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 2; /* behind cards and logo */
+    }
+
+    .ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(24, 169, 229, 0.07);
+      border-radius: 50%;
+    }
+
+    .ring-1 { width: 340px; height: 340px; }
+    .ring-2 { width: 480px; height: 480px; border-color: rgba(24, 169, 229, 0.04); }
+    .ring-3 { width: 620px; height: 620px; border-color: rgba(24, 169, 229, 0.02); }
+    .ring-4 { width: 800px; height: 800px; border-color: rgba(24, 169, 229, 0.01); }
+
+    /* Floating glowing orbs with ambient lights */
+    .glowing-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .orb-blue {
+      width: 16px;
+      height: 16px;
+      background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #18A9E5 55%, #0d79a6 100%);
+      left: 10%;
+      top: 55%;
+      animation: floatOrbBlue 8s ease-in-out infinite alternate;
+    }
+
+    .orb-yellow {
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #F4C542 55%, #d1a115 100%);
+      left: 44%;
+      top: 63%;
+      animation: floatOrbYellow 7s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes floatOrbBlue {
+      0% { transform: translateY(0) scale(1); filter: drop-shadow(0 12px 6px rgba(24, 169, 229, 0.15)); }
+      100% { transform: translateY(-16px) scale(1.05); filter: drop-shadow(0 28px 12px rgba(24, 169, 229, 0.07)); }
+    }
+
+    @keyframes floatOrbYellow {
+      0% { transform: translateY(0) scale(1); filter: drop-shadow(0 12px 6px rgba(244, 197, 66, 0.15)); }
+      100% { transform: translateY(-14px) scale(1.05); filter: drop-shadow(0 26px 12px rgba(244, 197, 66, 0.07)); }
+    }
+
+    /* Prominent central VOICE logo group */
+    .brand-logo-group {
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+
+    .logo-box {
+      width: 160px;
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(24, 169, 229, 0.18));
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .brand-logo-group:hover .logo-box {
+      transform: scale(1.06) rotate(-1deg);
+      filter: drop-shadow(0 26px 56px rgba(24, 169, 229, 0.20));
+    }
+
+    .logo-typography {
+      font-family: var(--font-heading);
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-left: 8px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #18A9E5 0%, #4CC0FF 40%, #F4C542 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 6px 18px rgba(24,169,229,0.06);
+    }
+
+    /* Bottom Flowing Waves */
+    .bottom-waves {
+      position: absolute;
+      bottom: 40px; /* raised up for stronger visual coverage */
+      left: -6%; /* extend slightly beyond edge for a dramatic feel */
+      width: 112%;
+      height: 420px; /* raised and taller to cover more of left half */
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* ── RIGHT SECTION (Modern Clean Card) ─────────────────────── */
+    .right-section {
+      background: #F8FAFC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating Login Card with modern crisp shadow and padding */
+    .login-card {
+      width: 100%;
+      max-width: 460px;
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 24px;
+      box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.06),
+                  0 0 50px -10px rgba(24, 169, 229, 0.03);
+      padding: 56px 44px;
+      box-sizing: border-box;
+      z-index: 10;
+      position: relative;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    .login-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 32px 80px -16px rgba(15, 23, 42, 0.10),
+                  0 0 60px -8px rgba(24, 169, 229, 0.05);
+    }
+
+    .login-card-header {
+      text-align: center;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: linear-gradient(90deg, rgba(24,169,229,0.08), rgba(244,197,66,0.06));
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #0F172A;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.04);
+      border: 1px solid rgba(226,232,240,0.7);
+      animation: subtlePulse 2.6s ease-in-out infinite;
+    }
+
+    .security-badge svg { width: 16px; height: 16px; }
+
+    @keyframes subtlePulse {
+      0% { transform: translateY(0); opacity: 0.98 }
+      50% { transform: translateY(-3px); opacity: 1 }
+      100% { transform: translateY(0); opacity: 0.98 }
+    }
+
+    .login-card-header h2 {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      letter-spacing: -0.8px;
+    }
+
+    .login-card-header p {
+      font-size: 0.9rem;
+      color: #64748B;
+      margin-bottom: 0px;
+      font-weight: 400;
+    }
+
+    /* Active blue pill indicator */
+    .pill-indicator {
+      width: 36px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 9999px;
+      margin-top: 14px;
+      box-shadow: 0 2px 8px rgba(24, 169, 229, 0.25);
+    }
+
+    /* Premium Modern Forms */
+    .login-form .form-group {
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .login-form label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #334155;
+      margin-bottom: 8px;
+      letter-spacing: 0.1px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon-left {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      pointer-events: none;
+      width: 18px;
+      height: 18px;
+      transition: color var(--transition);
+    }
+
+    .input-wrapper:focus-within .input-icon-left {
+      color: var(--primary);
+    }
+
+    .input-icon-right {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      transition: color var(--transition);
+    }
+
+    .email-valid-icon {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .input-icon-right:hover {
+      color: var(--text-main);
+    }
+
+    .login-form .form-control {
+      padding: 14px 16px 14px 44px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      transition: all 0.2s ease-in-out;
+      box-sizing: border-box;
+      color: var(--text-main);
+      width: 100%;
+    }
+
+    /* Password padding tweak for visibility toggle */
+    .login-form .form-control-pass {
+      padding-right: 44px;
+    }
+
+    .login-form .form-control:hover {
+      border-color: #CBD5E1;
+    }
+
+    .login-form .form-control:focus {
+      border-color: var(--primary);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(24, 169, 229, 0.08);
+      outline: none;
+    }
+
+    .login-form .form-control::placeholder {
+      color: #94A3B8;
+    }
+
+    /* Options checklist row */
+    .form-options-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      font-size: 0.85rem;
+    }
+
+    .forgot-link {
+      color: var(--primary);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .forgot-link:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    /* Custom elegant Square Checkbox */
+    .checkbox-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    .checkbox-wrap input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .checkbox-box {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 4px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .checkbox-wrap:hover .checkbox-box {
+      border-color: var(--primary);
+      background: rgba(24, 169, 229, 0.02);
+    }
+
+    .checkbox-wrap input:checked ~ .checkbox-box {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .checkbox-wrap input:checked ~ .checkbox-box::after {
+      content: '';
+      width: 3.5px;
+      height: 7px;
+      border: 1.5px solid white;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg) translate(-0.5px, -1px);
+      display: block;
+    }
+
+    .checkbox-wrap input:focus-visible ~ .checkbox-box {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(24, 169, 229, 0.2);
+    }
+
+    .checkbox-label {
+      font-weight: 500;
+      color: #64748B;
+    }
+
+    /* Premium Gradient Submit Button */
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(135deg, #18A9E5 0%, #007AFF 100%);
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px -4px rgba(24, 169, 229, 0.35),
+                  0 4px 12px -2px rgba(24, 169, 229, 0.15);
+      box-sizing: border-box;
+      transition: all var(--transition);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-btn:hover {
+      background: linear-gradient(135deg, #28b8f5 0%, #0062CC 100%);
+      box-shadow: 0 12px 28px -2px rgba(24, 169, 229, 0.45),
+                  0 6px 16px -2px rgba(24, 169, 229, 0.2);
+      transform: translateY(-1.5px);
+    }
+
+    .login-btn:active {
+      transform: translateY(-0.5px);
+      box-shadow: 0 6px 16px -4px rgba(24, 169, 229, 0.35);
+    }
+
+    /* Muted OR Divider */
+    .login-divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 28px 0;
+      color: #94A3B8;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .login-divider::before,
+    .login-divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .login-divider:not(:empty)::before { margin-right: 16px; }
+    .login-divider:not(:empty)::after { margin-left: 16px; }
+
+    /* Google SSO Button */
+    .google-sso-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 13px 20px;
+      width: 100%;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #334155;
+      transition: all var(--transition);
+      cursor: pointer;
+      box-sizing: border-box;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .google-sso-btn:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+      transform: translateY(-0.5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .google-sso-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Help & Support Footer Link */
+    .login-footer-support {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.85rem;
+      color: #64748B;
+    }
+
+    .login-footer-support a {
+      color: var(--primary);
+      font-weight: 500;
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .login-footer-support a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    /* ── Premium Entrance & Living Animations ────────────────── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      // --- Particle canvas system (left side) ---
+      const canvas = document.getElementById('leftCanvas');
+      if (canvas && left) {
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+          // make canvas slightly wider to match extended left artwork
+          canvas.width = Math.floor(left.clientWidth * 1.12);
+          canvas.height = Math.floor(left.clientHeight + 60);
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        function rand(min, max) { return Math.random() * (max - min) + min; }
+
+        function createParticles(count) {
+          particles = [];
+          for (let i = 0; i < count; i++) {
+            particles.push({
+              x: rand(0, canvas.width),
+              y: rand(canvas.height * 0.2, canvas.height),
+              r: rand(0.8, 4.5),
+              vx: rand(-0.25, 0.25),
+              vy: rand(-0.15, -0.6),
+              alpha: rand(0.08, 0.7),
+              hue: rand(190, 40) // will be used with lerp
+            });
+          }
+        }
+
+        createParticles(Math.max(28, Math.floor((canvas.width * canvas.height) / 90000)));
+
+        let last = performance.now();
+        function renderParticles(now) {
+          const dt = Math.min(40, now - last) / 16.666;
+          last = now;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let p of particles) {
+            p.x += p.vx * dt * 0.9;
+            p.y += p.vy * dt * 1.1;
+            p.alpha -= 0.0008 * dt;
+            if (p.y < -40 || p.alpha <= 0) {
+              // respawn at bottom
+              p.x = rand(0, canvas.width);
+              p.y = canvas.height + rand(10, 80);
+              p.r = rand(0.8, 4.2);
+              p.vx = rand(-0.3, 0.3);
+              p.vy = rand(-0.15, -0.6);
+              p.alpha = rand(0.12, 0.7);
+            }
+
+            const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4.5);
+            g.addColorStop(0, `rgba(255,255,255,${Math.min(0.95, p.alpha * 1.2)})`);
+            g.addColorStop(0.45, `rgba(28,140,210,${p.alpha * 0.6})`);
+            g.addColorStop(1, `rgba(236,180,69,${p.alpha * 0.08})`);
+
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          requestAnimationFrame(renderParticles);
+        }
+        requestAnimationFrame(renderParticles);
+
+        // gentle mouse nudge on left area
+        left.addEventListener('mousemove', (ev) => {
+          const rect = left.getBoundingClientRect();
+          const mx = ev.clientX - rect.left;
+          const my = ev.clientY - rect.top;
+          for (let i = 0; i < 4; i++) {
+            const p = particles[Math.floor(Math.random() * particles.length)];
+            p.vx += (mx - p.x) * 0.00016;
+            p.vy += (my - p.y) * -0.00028;
+            p.alpha = Math.min(1, p.alpha + 0.06);
+          }
+        });
+      }
+
+      // --- Animate VOICE logo bars (wave effect) ---
+      const logoSvg = document.querySelector('.logo-box');
+      if (logoSvg) {
+        const rectNodes = Array.from(logoSvg.querySelectorAll('rect'));
+        const bars = rectNodes.map(r => ({
+          node: r,
+          baseH: parseFloat(r.getAttribute('height')),
+          baseY: parseFloat(r.getAttribute('y'))
+        }));
+
+        let startT = null;
+        function animateBars(ts) {
+          if (!startT) startT = ts;
+          const t = (ts - startT) / 1000;
+          bars.forEach((b, i) => {
+            const freq = 1.2 + i * 0.08;
+            const amp = Math.min(18, b.baseH * 0.45);
+            const newH = b.baseH + Math.sin(t * freq + i * 0.6) * amp;
+            const newY = b.baseY + (b.baseH - newH);
+            b.node.setAttribute('height', Math.max(2, newH));
+            b.node.setAttribute('y', newY);
+          });
+          requestAnimationFrame(animateBars);
+        }
+        requestAnimationFrame(animateBars);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes scaleInLogo {
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes fadeInSoft {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulseRings {
+      0% { transform: translate(-50%, -50%) scale(0.97); opacity: 0.7; }
+      50% { transform: translate(-50%, -50%) scale(1.03); opacity: 1.0; }
+      100% { transform: translate(-50%, -50%) scale(0.97); opacity: 0.7; }
+    }
+
+    @keyframes waveFloatBlue {
+      0% { transform: translateY(0) scaleY(1); }
+      50% { transform: translateY(-4px) scaleY(1.015) scaleX(1.005); }
+      100% { transform: translateY(0) scaleY(1); }
+    }
+
+    @keyframes waveFloatYellow {
+      0% { transform: translateY(0) scaleY(1); }
+      50% { transform: translateY(-3px) scaleY(1.01) scaleX(1.003); }
+      100% { transform: translateY(0) scaleY(1); }
+    }
+
+    .login-card-wrapper {
+      width: 100%;
+      max-width: 460px;
+      z-index: 10;
+      animation: fadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .brand-logo-group {
+      animation: scaleInLogo 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .concentric-rings {
+      animation: pulseRings 9s ease-in-out infinite;
+    }
+
+    .dotted-grid {
+      animation: fadeInSoft 1.2s ease-in-out both;
+    }
+
+    .wave-blue {
+      animation: waveFloatBlue 12s ease-in-out infinite;
+      transform-origin: bottom left;
+    }
+
+    .wave-yellow {
+      animation: waveFloatYellow 10s ease-in-out infinite;
+      transform-origin: bottom right;
+    }
+
+    /* ── Responsive Styling ────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .login-container { grid-template-columns: 1fr; }
+      .left-section { display: none; }
+      .right-section { width: 100%; background: #F1F5FA; }
+      .concentric-rings { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .right-section { padding: 16px; }
+      .login-card { padding: 40px 24px; border-radius: 20px; }
+    }
+    /* Toast notifications */
+    .toast-container {
+      position: fixed;
+      top: 22px;
+      right: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .toast {
+      pointer-events: auto;
+      min-width: 220px;
+      max-width: 360px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 24px rgba(2,6,23,0.12);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-family: var(--font-body);
+      color: #0F172A;
+      border-left: 4px solid var(--primary);
+      transform-origin: right top;
+      animation: toastIn 360ms cubic-bezier(.2,.9,.2,1);
+    }
+
+    .toast.success { border-left-color: #16A34A; }
+    .toast.error { border-left-color: #DC2626; }
+    .toast.info { border-left-color: var(--primary); }
+
+    .toast .msg { font-size: 0.95rem; color: #0F172A; }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Stunning animated lines for left-bottom */
+    .stunning-lines .stun {
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 8px 18px rgba(24,169,229,0.14));
+      animation: dashMove 6s linear infinite;
+      transform-origin: center;
+    }
+
+    .stunning-lines .stun.faint { opacity: 0.14; filter: blur(0.6px); }
+
+    @keyframes dashMove { to { stroke-dashoffset: -320; } }
+
+    .cursor-orb {
+      transition: transform 0.18s cubic-bezier(.22,.9,.26,1), opacity 0.15s ease; 
+      will-change: transform, opacity;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    /* Particle canvas fills the left section */
+    .particle-canvas {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 110%;
+      height: 100%;
+      z-index: 6; /* behind logo (10) and above background (1) */
+      pointer-events: none;
+      filter: drop-shadow(0 8px 18px rgba(24,169,229,0.08));
+      mix-blend-mode: screen;
+      opacity: 0.98;
+    }
+
+    /* Logo breathing / wave */
+    @keyframes logoBreath {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-4px) scale(1.03); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    .logo-box {
+      will-change: transform;
+      animation: logoBreath 4.2s ease-in-out infinite;
+    }
+
+    /* Button focus for keyboard users */
+    .login-btn:focus-visible, .google-sso-btn:focus-visible, .forgot-link:focus-visible {
+      outline: 3px solid rgba(24,169,229,0.18);
+      outline-offset: 4px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    
+    <!-- Left Section: Premium Branding Minimalist Artwork -->
+    <div class="left-section">
+      <canvas id="leftCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+      
+      <!-- Top Left Dotted Corner Pattern -->
+      <svg class="dotted-grid dotted-top-left" viewBox="0 0 100 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="26" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="42" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="58" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="74" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="90" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="10" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="26" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="42" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="58" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="74" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="90" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="10" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="26" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="42" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="58" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="74" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="90" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="10" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="26" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="42" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="58" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="74" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="90" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+      </svg>
+
+      <!-- Sweeping Path Lines in Background -->
+      <svg class="bg-paths" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Faint concentric wave lines in top-left corner background -->
+        <path d="M-20,120 A 180,180 0 0,0 160,-20" stroke="rgba(24, 169, 229, 0.08)" stroke-width="1.5" fill="none"/>
+        <path d="M-40,160 A 240,240 0 0,0 220,-40" stroke="rgba(24, 169, 229, 0.04)" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
+        <path d="M-60,200 A 300,300 0 0,0 280,-60" stroke="rgba(24, 169, 229, 0.02)" stroke-width="1.5" fill="none"/>
+
+        <!-- Path for Blue Orb -->
+        <path d="M-50,290 C100,260 200,320 280,220" stroke="#18A9E5" stroke-opacity="0.06" stroke-width="1.5"/>
+        <!-- Path for Yellow Orb -->
+        <path d="M220,180 C310,240 400,200 550,250" stroke="#F4C542" stroke-opacity="0.06" stroke-width="1.5"/>
+        
+        <!-- Subtle concentric loops -->
+        <path d="M50,80 C120,40 380,40 450,80" stroke="#18A9E5" stroke-opacity="0.03" stroke-width="1" stroke-dasharray="4 4"/>
+      </svg>
+
+      <!-- Floating Glowing Orbs -->
+      <div class="glowing-orb orb-blue"></div>
+      <div class="glowing-orb orb-yellow"></div>
+
+      <!-- Center Logo Group -->
+      <div class="brand-logo-group">
+        <!-- Pixel-Perfect Exact replication of your VOICE Logo with curved talk bubble tail -->
+        <svg class="logo-box" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Main Chat Speech Bubble Shape with smooth curved talk bubble tail -->
+          <path d="M18 24 C18 13 27 4 38 4 H82 C93 4 102 13 102 24 V64 C102 75 93 84 82 84 H48 C42 84 32 93 27 99 C25.5 100.8 24.5 99.8 25 97 L27 84 C22 84 18 80 18 75 Z" fill="url(#bubbleGrad)"/>
+          
+          <defs>
+            <!-- Vertical Split Gradient: Blue on Left half, Yellow to Orange Gradient on Right half -->
+            <linearGradient id="bubbleGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#18A9E5"/>
+              <stop offset="50%" stop-color="#18A9E5"/>
+              <stop offset="50%" stop-color="#F4C542"/>
+              <stop offset="100%" stop-color="#EAA115"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Centered white equalizing sound wave bars (11 bars, perfectly symmetric) -->
+          <rect x="28.5" y="42" width="3" height="4" rx="1.5" fill="white"/>
+          <rect x="34.5" y="40" width="3" height="8" rx="1.5" fill="white"/>
+          <rect x="40.5" y="36.5" width="3" height="15" rx="1.5" fill="white"/>
+          <rect x="46.5" y="33" width="3" height="22" rx="1.5" fill="white"/>
+          <rect x="52.5" y="29.5" width="3" height="29" rx="1.5" fill="white"/>
+          <rect x="58.5" y="26" width="3" height="36" rx="1.5" fill="white"/>
+          <rect x="64.5" y="29.5" width="3" height="29" rx="1.5" fill="white"/>
+          <rect x="70.5" y="33" width="3" height="22" rx="1.5" fill="white"/>
+          <rect x="76.5" y="36.5" width="3" height="15" rx="1.5" fill="white"/>
+          <rect x="82.5" y="40" width="3" height="8" rx="1.5" fill="white"/>
+          <rect x="88.5" y="42" width="3" height="4" rx="1.5" fill="white"/>
+        </svg>
+
+        <div class="logo-typography">VOICE</div>
+      </div>
+
+      <!-- Bottom waves exactly like the mockup -->
+      <div class="bottom-waves">
+        <svg viewBox="0 0 500 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; preserve-aspect-ratio: none;">
+          <!-- Blue wave (Left) -->
+          <path class="wave-blue" d="M-40,190 C120,120 220,260 340,200 C420,160 520,220 620,200 L620,360 L-40,360 Z" fill="url(#blueWaveGrad)" opacity="0.98"/>
+          <path class="wave-blue" d="M-40,190 C120,120 220,260 340,200 C420,160 520,220 620,200" stroke="#18A9E5" stroke-width="2.5" stroke-opacity="0.18"/>
+
+          <!-- Yellow wave (Right) -->
+          <path class="wave-yellow" d="M120,260 C200,200 360,200 620,180 L620,360 L120,360 Z" fill="url(#yellowWaveGrad)" opacity="0.95"/>
+          <path class="wave-yellow" d="M120,260 C200,200 360,200 620,180" stroke="#F4C542" stroke-width="2" stroke-opacity="0.12"/>
+
+          <defs>
+            <linearGradient id="blueWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#18A9E5"/>
+              <stop offset="100%" stop-color="#0284C7"/>
+            </linearGradient>
+            <linearGradient id="yellowWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F4C542"/>
+              <stop offset="100%" stop-color="#EAA115"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Sparkling white dot details -->
+          <circle cx="60" cy="185" r="1.5" fill="white" opacity="0.75"/>
+          <circle cx="430" cy="200" r="1" fill="white" opacity="0.6"/>
+          <circle cx="280" cy="215" r="1.2" fill="white" opacity="0.5"/>
+        </svg>
+        <!-- Decorative animated lines for extra 'stunning' look -->
+        <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" class="stunning-lines" style="position:absolute;bottom:36px;left:0;width:120%;height:120px;pointer-events:none;z-index:6;opacity:0.95;">
+          <defs>
+            <linearGradient id="lineGrad" x1="0" x2="1">
+              <stop offset="0%" stop-color="#18A9E5" stop-opacity="0.95" />
+              <stop offset="100%" stop-color="#F4C542" stop-opacity="0.9" />
+            </linearGradient>
+          </defs>
+          <path class="stun" d="M0,120 C120,80 220,170 340,120 C420,92 520,150 700,110" stroke="url(#lineGrad)" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 260" stroke-dashoffset="0" opacity="0.95"/>
+          <path class="stun faint" d="M0,140 C140,100 260,200 380,140 C460,110 560,170 700,140" stroke="#FFFFFF" stroke-width="0.8" stroke-opacity="0.12" fill="none"/>
+        </svg>
+        <!-- mouse-follow orb -->
+        <div class="cursor-orb" aria-hidden="true" style="position:absolute;width:18px;height:18px;border-radius:50%;pointer-events:none;left:0;top:0;background:radial-gradient(circle at 30% 30%, #FFFFFF 0%, rgba(24,169,229,0.85) 45%, rgba(2,132,199,0.6) 100%);filter:blur(6px);opacity:0.9;transform:translate(-50%,-50%) scale(0.9);z-index:9;"></div>
+      </div>
+
+    </div>
+
+    <!-- Right Section: Clean centered white login card -->
+    <div class="right-section">
+      
+      <!-- Top Right Dotted Corner Pattern -->
+      <svg class="dotted-grid dotted-top-right" viewBox="0 0 100 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="10" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="26" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="42" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="58" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="74" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="90" cy="10" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="10" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="26" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="42" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="58" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="74" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="90" cy="26" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="10" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="26" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="42" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="58" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="74" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="90" cy="42" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="10" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="26" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="42" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="58" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="74" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+        <circle cx="90" cy="58" r="1.5" fill="#18A9E5" opacity="0.3"/>
+      </svg>
+
+      <!-- Frosted Elevated Glass Card Wrapper (Handles entrance animations smoothly) -->
+      <div class="login-card-wrapper">
+        <div class="login-card">
+          
+          <div class="login-card-header">
+            <h2>Welcome Back</h2>
+            <p>Sign in to continue to your account</p>
+            <div class="pill-indicator"></div>
+            <div class="security-badge" role="status" aria-live="polite">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L3 6v6c0 5 4 9 9 9s9-4 9-9V6l-9-4z"/>
+                <path d="M9 11v-2a3 3 0 0 1 6 0v2" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Secure Credentials Form -->
+          <form class="login-form" onsubmit="handlePortalLogin(event)">
+            
+            <div class="form-group">
+              <label for="portalEmail">Email</label>
+              <div class="input-wrapper">
+                <!-- Lucide mail outline equivalent icon -->
+                <svg class="input-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <input type="email" id="portalEmail" class="form-control" placeholder="Enter your email" required autocomplete="username">
+                <!-- Email valid check icon (hidden until valid) -->
+                <svg id="emailValid" class="email-valid-icon" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0;pointer-events:none;">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="portalPassword">Password</label>
+              <div class="input-wrapper">
+                <!-- Lucide lock outline equivalent icon -->
+                <svg class="input-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                
+                <input type="password" id="portalPassword" class="form-control form-control-pass" placeholder="Enter your password" required autocomplete="current-password">
+                
+                <!-- Eye Toggle visibility outline icon -->
+                <svg class="input-icon-right" id="passToggle" onclick="togglePassVisibility()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+            </div>
+
+            <div class="form-options-row">
+              <label class="checkbox-wrap">
+                <input type="checkbox" id="rememberMe">
+                <span class="checkbox-box" id="checkboxBox"></span>
+                <span class="checkbox-label">Remember me</span>
+              </label>
+              <a href="#" class="forgot-link" onclick="showToast('Password reset link dispatched!', 'info')">Forgot password?</a>
+            </div>
+
+            <!-- Premium Gradient Blue Button -->
+            <button type="submit" class="login-btn">
+              Sign In
+            </button>
+
+          </form>
+
+          <div class="login-divider">OR</div>
+
+          <!-- Google SSO authentication button -->
+          <button class="google-sso-btn" onclick="simulateGoogleLogin()">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l3.66-2.85z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.85c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            Sign in with Google
+          </button>
+
+          <div class="login-footer-support">
+            Need help? <a href="#" onclick="showToast('Support system loaded.', 'info')">Contact Support</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Concentric Rings (drawn on top of backgrounds but behind logo/card) -->
+    <div class="concentric-rings">
+      <div class="ring ring-1"></div>
+      <div class="ring ring-2"></div>
+      <div class="ring ring-3"></div>
+      <div class="ring ring-4"></div>
+    </div>
+
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    /* Small UI utilities: toasts, remember-me persistence, password toggle, parallax */
+    let passVisible = false;
+    const EYE_ON_SVG = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
+    const EYE_OFF_SVG = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>`;
+
+    // Toast system
+    const uiToastContainer = (() => {
+      let c = document.createElement('div');
+      c.className = 'toast-container';
+      document.body.appendChild(c);
+      return c;
+    })();
+
+    function showToast(message, type = 'info', life = 3200) {
+      const t = document.createElement('div');
+      t.className = `toast ${type}`;
+      t.innerHTML = `<div class="msg">${message}</div>`;
+      uiToastContainer.appendChild(t);
+      setTimeout(() => t.style.opacity = '0', life - 300);
+      setTimeout(() => t.remove(), life);
+    }
+
+    // Password visibility toggle
+    function togglePassVisibility() {
+      const input = document.getElementById('portalPassword');
+      const toggle = document.getElementById('passToggle');
+      passVisible = !passVisible;
+      if (passVisible) {
+        input.type = 'text';
+        toggle.innerHTML = EYE_OFF_SVG;
+        toggle.style.color = 'var(--primary)';
+      } else {
+        input.type = 'password';
+        toggle.innerHTML = EYE_ON_SVG;
+        toggle.style.color = 'var(--text-muted)';
+      }
+    }
+
+    // Google SSO simulation
+    function simulateGoogleLogin() {
+      showToast('Redirecting securely to Google authentication...', 'info');
+      setTimeout(() => {
+        showToast('Google credentials verified!', 'success');
+        setTimeout(() => { window.location.href = 'index.html'; }, 700);
+      }, 900);
+    }
+
+    // Form submit handler with remember-me persistence
+    function handlePortalLogin(event) {
+      event.preventDefault();
+      const emailEl = document.getElementById('portalEmail');
+      const passEl = document.getElementById('portalPassword');
+      const remember = document.getElementById('rememberMe');
+      const email = emailEl.value.trim();
+      const pass = passEl.value;
+
+      if (!email || !pass) {
+        showToast('Please enter both email and password.', 'error');
+        return;
+      }
+
+      // Simple email format check
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        showToast('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      if (remember.checked) {
+        localStorage.setItem('voice_remember_email', email);
+        localStorage.setItem('voice_remember_me', '1');
+      } else {
+        localStorage.removeItem('voice_remember_email');
+        localStorage.removeItem('voice_remember_me');
+      }
+
+      showToast('Verifying connection safety...', 'info', 1800);
+      setTimeout(() => {
+        showToast('Authorization Granted. Welcome Back!', 'success', 1000);
+        setTimeout(() => { window.location.href = 'index.html'; }, 900);
+      }, 1100);
+    }
+
+    // Restore remember-me state on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const stored = localStorage.getItem('voice_remember_email');
+      const remember = localStorage.getItem('voice_remember_me');
+      const emailEl = document.getElementById('portalEmail');
+      const rememberEl = document.getElementById('rememberMe');
+      const toggle = document.getElementById('passToggle');
+
+      if (stored && remember === '1') {
+        emailEl.value = stored;
+        rememberEl.checked = true;
+      }
+
+      // Init pass toggle icon color / svg
+      if (toggle) {
+        toggle.innerHTML = EYE_ON_SVG;
+        toggle.style.color = 'var(--text-muted)';
+      }
+
+      // Live email validation indicator
+      const emailInput = document.getElementById('portalEmail');
+      const emailIcon = document.getElementById('emailValid');
+      if (emailInput && emailIcon) {
+        emailInput.addEventListener('input', () => {
+          const v = emailInput.value.trim();
+          const ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+          if (ok) {
+            emailIcon.style.opacity = 1;
+            emailIcon.style.transform = 'translateY(-50%) scale(1.06)';
+          } else {
+            emailIcon.style.opacity = 0;
+            emailIcon.style.transform = 'translateY(-50%) scale(0.92)';
+          }
+        });
+      }
+
+      // Lightweight parallax on the left branding
+      const left = document.querySelector('.left-section');
+      const logo = document.querySelector('.logo-box');
+      const rings = document.querySelector('.concentric-rings');
+      if (left && logo && rings) {
+        let lastX = 0, lastY = 0;
+        left.addEventListener('mousemove', (e) => {
+          const rect = left.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          lastX = x; lastY = y;
+          window.requestAnimationFrame(() => {
+            logo.style.transform = `translate(${lastX * 6}px, ${lastY * 6}px) scale(1.02)`;
+            rings.style.transform = `translate(${lastX * -10}px, ${lastY * -8}px)`;
+          });
+        });
+        // mouse-follow orb with smoothing
+        const orb = document.querySelector('.cursor-orb');
+        if (orb) {
+          let tx = 0, ty = 0, ox = 0, oy = 0;
+          left.addEventListener('mousemove', (e) => {
+            const rect = left.getBoundingClientRect();
+            tx = e.clientX - rect.left;
+            ty = e.clientY - rect.top;
+            orb.style.opacity = 1;
+          });
+          left.addEventListener('mouseleave', () => { orb.style.opacity = 0; });
+
+          function animateOrb() {
+            ox += (tx - ox) * 0.14;
+            oy += (ty - oy) * 0.14;
+            orb.style.transform = `translate(${ox}px, ${oy}px) translate(-50%,-50%) scale(1)`;
+            requestAnimationFrame(animateOrb);
+          }
+          requestAnimationFrame(animateOrb);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
