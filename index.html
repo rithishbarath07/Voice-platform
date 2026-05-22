@@ -575,102 +575,85 @@
       <!-- CALENDAR PAGE -->
       <section class="page" id="page-calendar">
         <div class="cal-page">
-          <div class="cal-page-header">
-            <div>
-              <h1 class="page-title">Calendar</h1>
-              <p class="page-subtitle">Schedule campaigns, journeys, telecalls, and meetings.</p>
+          <div class="cal-master-card">
+            <div class="cal-deco cal-deco-dots cal-deco-tl" aria-hidden="true"></div>
+            <div class="cal-deco cal-deco-dots cal-deco-tr" aria-hidden="true"></div>
+            <span class="cal-deco-orb cal-deco-orb-blue" aria-hidden="true"></span>
+            <span class="cal-deco-orb cal-deco-orb-gold" aria-hidden="true"></span>
+            <div class="cal-deco-ring" aria-hidden="true"></div>
+
+            <div class="cal-card-top">
+              <h2 class="cal-period-title" id="calPeriodTitle">Calendar</h2>
+              <div class="cal-nav-pill">
+                <button type="button" class="cal-nav-arrow" id="calNavPrev" aria-label="Previous">&lsaquo;</button>
+                <button type="button" class="cal-nav-today" id="calTodayBtn">Today</button>
+                <button type="button" class="cal-nav-arrow" id="calNavNext" aria-label="Next">&rsaquo;</button>
+              </div>
+              <button type="button" class="cal-btn-new" id="calAddEventBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                New Event
+              </button>
             </div>
-          </div>
-          <div class="cal-stats-strip">
-            <div class="cal-stat-card">
-              <div class="cal-stat-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              </div>
-              <div>
-                <div class="cal-stat-val" id="calStatToday">0</div>
-                <div class="cal-stat-lbl">Events today</div>
-              </div>
+
+            <div class="cal-badges-row">
+              <span class="cal-badge cal-badge-blue" id="calBadgeMeetings">0 events this month</span>
+              <span class="cal-badge cal-badge-gold" id="calBadgeCampaigns">0 active campaigns</span>
+              <span class="cal-badge cal-badge-outline" id="calBadgeFocus">Focus score: 85%</span>
             </div>
-            <div class="cal-stat-card">
-              <div class="cal-stat-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+
+            <div class="cal-controls-row">
+              <div class="cal-view-switch">
+                <button type="button" class="cal-switch-btn active" data-view="month">Month</button>
+                <button type="button" class="cal-switch-btn" data-view="week">Week</button>
+                <button type="button" class="cal-switch-btn" data-view="day">Day</button>
+                <button type="button" class="cal-switch-btn" data-view="agenda">Agenda</button>
               </div>
-              <div>
-                <div class="cal-stat-val" id="calStatWeek">0</div>
-                <div class="cal-stat-lbl">This week</div>
-              </div>
-            </div>
-            <div class="cal-stat-card">
-              <div class="cal-stat-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/></svg>
-              </div>
-              <div>
-                <div class="cal-stat-val" id="calStatMonth">0</div>
-                <div class="cal-stat-lbl">This month</div>
-              </div>
-            </div>
-            <div class="cal-stat-card gold">
-              <div class="cal-stat-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              </div>
-              <div>
-                <div class="cal-stat-val" id="calStatCampaigns">0</div>
-                <div class="cal-stat-lbl">Campaigns scheduled</div>
+              <div class="cal-filter-chips">
+                <button type="button" class="cal-filter-chip active" data-filter="all">All</button>
+                <button type="button" class="cal-filter-chip" data-filter="campaign">Campaigns</button>
+                <button type="button" class="cal-filter-chip" data-filter="journey">Journeys</button>
+                <button type="button" class="cal-filter-chip" data-filter="telecall">Calls</button>
+                <button type="button" class="cal-filter-chip" data-filter="meeting">Meetings</button>
               </div>
             </div>
-          </div>
-          <div class="cal-toolbar">
-            <div class="cal-toolbar-left">
-              <div class="cal-view-tabs">
-                <button type="button" class="cal-view-tab active" data-view="month">Month</button>
-                <button type="button" class="cal-view-tab" data-view="agenda">Agenda</button>
+
+            <div class="cal-body-layout">
+              <div class="cal-viewport">
+                <div id="calViewMonth" class="cal-view active main-calendar"></div>
+                <div id="calViewWeek" class="cal-view cal-week-view"></div>
+                <div id="calViewDay" class="cal-view cal-day-view"></div>
+                <div id="calViewAgenda" class="cal-view cal-agenda-view"></div>
               </div>
-              <div class="cal-month-nav">
-                <button type="button" class="cal-nav-btn" id="calPrevMonth" aria-label="Previous month">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-                </button>
-                <h2 class="cal-month-title" id="calMonthTitle">May 2025</h2>
-                <button type="button" class="cal-nav-btn" id="calNextMonth" aria-label="Next month">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-                </button>
-                <button type="button" class="cal-today-btn" id="calTodayBtn">Today</button>
-              </div>
-            </div>
-            <div class="cal-filter-chips">
-              <button type="button" class="cal-filter-chip active" data-filter="all">All</button>
-              <button type="button" class="cal-filter-chip" data-filter="campaign">Campaigns</button>
-              <button type="button" class="cal-filter-chip" data-filter="journey">Journeys</button>
-              <button type="button" class="cal-filter-chip" data-filter="telecall">Calls</button>
-              <button type="button" class="cal-filter-chip" data-filter="meeting">Meetings</button>
-            </div>
-            <button type="button" class="btn-primary" id="calAddEventBtn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              Add Event
-            </button>
-          </div>
-          <div class="cal-main-layout">
-            <div class="cal-calendar-panel">
-              <div id="mainCalendar" class="main-calendar"></div>
-              <div id="calAgendaView" class="cal-agenda-view"></div>
-            </div>
-            <aside class="cal-sidebar">
-              <div class="cal-sidebar-card">
-                <div class="cal-sidebar-head">
-                  <div>
-                    <span class="cal-sidebar-title">Selected day</span>
-                    <div class="cal-sidebar-date" id="calSidebarDate"></div>
+              <aside class="cal-detail-panel">
+                <div class="cal-side-mini-stats">
+                  <div class="cal-side-stat">
+                    <span class="cal-side-stat-val" id="calSideToday">0</span>
+                    <span class="cal-side-stat-lbl">Today</span>
                   </div>
-                  <button type="button" class="cal-quick-add" id="calSidebarAdd" title="Add event">
+                  <div class="cal-side-stat gold">
+                    <span class="cal-side-stat-val" id="calSideWeek">0</span>
+                    <span class="cal-side-stat-lbl">This week</span>
+                  </div>
+                  <div class="cal-side-stat">
+                    <span class="cal-side-stat-val" id="calSideMonth">0</span>
+                    <span class="cal-side-stat-lbl">Month</span>
+                  </div>
+                </div>
+                <div class="cal-detail-head">
+                  <div>
+                    <span class="cal-detail-label">Selected day</span>
+                    <span class="cal-detail-date" id="calSidebarDate"></span>
+                  </div>
+                  <button type="button" class="cal-detail-add" id="calSidebarAdd" title="Add event">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                   </button>
                 </div>
-                <div class="cal-events-list" id="calEventsList"></div>
-              </div>
-              <div class="cal-sidebar-card">
-                <span class="cal-sidebar-title">Upcoming</span>
-                <div class="cal-events-list compact" id="calUpcomingList"></div>
-              </div>
-            </aside>
+                <div class="cal-detail-events" id="calEventsList"></div>
+                <div class="cal-detail-divider"></div>
+                <span class="cal-detail-label">Upcoming</span>
+                <div class="cal-detail-events compact" id="calUpcomingList"></div>
+              </aside>
+            </div>
           </div>
         </div>
       </section>
