@@ -301,14 +301,17 @@
   background: linear-gradient(135deg, #FFFFFF 0%, rgba(248, 250, 252, 0.6) 100%);
   border: 1.5px solid rgba(24, 169, 229, 0.08);
   border-radius: 14px;
-  overflow: visible;
+  overflow: hidden;
+  max-width: 100%;
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
 }
 
 .data-table {
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;
+  width: 100%;
+  max-width: 100%;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -1141,16 +1144,18 @@
 .campaigns-table-wrapper {
   border: 1px solid rgba(24, 169, 229, 0.1);
   border-radius: 14px 14px 0 0;
-  overflow: visible;
+  overflow: hidden;
   background: #fff;
   width: 100%;
+  max-width: 100%;
 }
 
 .campaigns-table-wrapper .data-table {
   max-height: none;
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden;
   width: 100%;
+  max-width: 100%;
 }
 
 .campaign-data-table {
